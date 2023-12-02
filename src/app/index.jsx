@@ -58,6 +58,8 @@ function App() {
             setAmountInputIsDisabled(false);
             setSelectIsDisabled(false);
             setAmountInput('')
+            setFromOption(null)
+            setToOption(null)
         }
     }
 
