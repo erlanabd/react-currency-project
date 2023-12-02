@@ -2,12 +2,17 @@ import React from "react";
 import styles from './styles.module.scss';
 import clsx from "clsx";
 
-const Loader = (className) => {
+const Loader = (props) => {
+ const    {
+        isLoading
+    } = props
+
     const loaderClassnames = clsx (
-        styles['content'],
-        styles['spinner'],
-        className
+        {
+            [styles['active-loader']] : isLoading
+        }
     )
+
     return (
         <div className={loaderClassnames}>
             <div className={styles['content']}>
@@ -15,6 +20,7 @@ const Loader = (className) => {
                 </div>
             </div>
         </div>
+
 
     )
 }

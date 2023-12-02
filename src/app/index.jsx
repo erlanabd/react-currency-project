@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import styles from './styles.module.scss';
 import Button from "../components/button";
-import CustomSelect from "../components/select";
+import CurrencySelect from "../components/currency-select";
 import AmountInput from "../components/amount";
 import {API, REQUEST_HEADERS} from "../api/endpoints";
 import Loader from "../components/loader";
-
+import CurrencyFlag from "../components/currency-flag";
 
 function App() {
 
@@ -97,14 +97,15 @@ function App() {
         setFromOption(toOption)
     }
 
+    if (globalLoading) {
+       return (
+            <Loader isLoading={globalLoading}/>
+        )
+    }
+
     return (
         <>
-            {globalLoading && <div className={styles['global-loader-wrap']}>
-                <Loader className={styles['global-loader']}/>
-            </div>}
-
-
-            {!globalLoading && <div className={styles['currency-converter-wrap']}>
+            <div className={styles['currency-converter-wrap']}>
                 <h1 className={styles['title']}>Currency Converter</h1>
                 <AmountInput
                     disabled={amountInputIsDisabled}
@@ -113,7 +114,7 @@ function App() {
                     onChange={e => setAmountInput(e.target.value)}
                 />
                 <div className={styles['custom-selects']}>
-                    <CustomSelect
+                    <CurrencySelect
                         isDisabled={selectIsDisabled}
                         className={styles['first']}
                         label='From'
@@ -126,7 +127,7 @@ function App() {
                         <i className={styles['swap-icon']}></i>
                     </div>
 
-                    <CustomSelect
+                    <CurrencySelect
                         isDisabled={selectIsDisabled}
                         label='To'
                         value={toOption}
@@ -137,12 +138,15 @@ function App() {
                 {error && <div className={styles['error']}>Введите соответствующее число</div>}
                 <Button
                     disabled={!amountInput || !fromOption || !toOption || buttonIsDisabled}
+                    isLoading={loading}
                     onClick={handleConvertCurrency}
                     className={`${styles['convert-btn']}`}
                 >
                     Convert
-                    {loading && <Loader/>}
+
                 </Button>
+
+
 
                 {result && <div className={styles['result-wrap']}>
                     <span className={styles['result-wrap__text']}> Result: </span>
@@ -151,7 +155,7 @@ function App() {
                 </div>}
 
 
-            </div>}
+            </div>
 
         </>
 

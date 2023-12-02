@@ -2,9 +2,10 @@ import React from "react";
 import Select, {defaultTheme} from "react-select";
 import styles from './styles.module.scss'
 import clsx from "clsx";
-import {isDisabled} from "@testing-library/user-event/dist/utils";
+import CurrencyFlag from "../currency-flag";
 
-const CustomSelect = (props) => {
+
+const CurrencySelect = (props) => {
     const {
         value,
         onChange,
@@ -19,6 +20,14 @@ const CustomSelect = (props) => {
         className
     )
 
+    const formatOptionLabel = (option) => {
+        return (
+            <div className={styles['custom-option']}>
+                <CurrencyFlag width={15} height={13} currency={option.value}/>
+                <div className={styles['label']}>{option.label}</div>
+            </div>
+        )
+    }
 
     return (
         <div className={selectClassnames}>
@@ -34,9 +43,10 @@ const CustomSelect = (props) => {
                 value={value}
                 onChange={onChange}
                 options={options}
+                formatOptionLabel={formatOptionLabel}
             />
         </div>
     )
 }
 
-export default CustomSelect
+export default CurrencySelect

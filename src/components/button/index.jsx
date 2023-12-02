@@ -9,7 +9,8 @@ const Button = (props) => {
         className,
         onClick,
         type = 'button',
-        disabled
+        disabled,
+        isLoading
     } = props
 
     const mainClasses = clsx (
@@ -28,7 +29,7 @@ const Button = (props) => {
                 type={type}
                 className={mainClasses}
             >
-
+                {isLoading && <Loader/>}
                 {children}
             </button>
 
