@@ -5,7 +5,7 @@ import CurrencySelect from "../components/currency-select";
 import AmountInput from "../components/amount";
 import {API, REQUEST_HEADERS} from "../api/endpoints";
 import Loader from "../components/loader";
-import CurrencyFlag from "../components/currency-flag";
+
 
 function App() {
 
@@ -23,9 +23,6 @@ function App() {
 
 
     const getSymbols = async () => {
-
-
-
         try {
             setGlobalLoading(true)
             const res = await fetch(API.CURRENCY.symbols, REQUEST_HEADERS)
@@ -36,7 +33,6 @@ function App() {
         } finally {
             setGlobalLoading(false)
         }
-
     }
 
     const handleConvertCurrency = async () => {
@@ -148,10 +144,13 @@ function App() {
 
 
 
-                {result && <div className={styles['result-wrap']}>
-                    <span className={styles['result-wrap__text']}> Result: </span>
+                {result && !error && <div className={styles['result-wrap']}>
+                    <span className={styles['result-wrap__text']}> 
+                    Result:
+                     </span>
                     <span
-                        className={styles['result-wrap__amount']}> {result.amount} {result.from} = {result.result} {result.to}</span>
+                        className={styles['result-wrap__amount']}> {result.amount} {result.from} = {result.result} {result.to}
+                    </span>
                 </div>}
 
 
