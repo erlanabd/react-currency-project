@@ -111,6 +111,7 @@ function App() {
                 />
                 <div className={styles['custom-selects']}>
                     <CurrencySelect
+                        placeholder='USD'
                         isDisabled={selectIsDisabled}
                         className={styles['first']}
                         label='From'
@@ -124,6 +125,7 @@ function App() {
                     </div>
 
                     <CurrencySelect
+                        placeholder='KGS'
                         isDisabled={selectIsDisabled}
                         label='To'
                         value={toOption}

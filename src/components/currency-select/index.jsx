@@ -12,7 +12,8 @@ const CurrencySelect = (props) => {
         options,
         label,
         className,
-        isDisabled
+        isDisabled,
+        placeholder
     } = props
 
     const selectClassnames = clsx (
@@ -37,6 +38,7 @@ const CurrencySelect = (props) => {
                 </span>
             )}
             <Select
+                placeholder={placeholder}
                 isDisabled={isDisabled}
                 classNamePrefix={'custom-select'}
                 className={styles['select']}
